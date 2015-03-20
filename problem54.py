@@ -207,18 +207,18 @@ for line in f:
         objTmp = analyse.checkRoyalFlushNumbers(handPlayer1Numbers)
         player1.hand = objTmp.hand
         player1.valueHand = objTmp.valueHand
-        if player1.hand != 9:
+        if player1.hand != analyse.handRank['RoyalFlush']:
             # Check if hand is Straight Flush
             objTmp = analyse.checkStraigthNumbers(handPlayer1Numbers)
             player1.hand = objTmp.hand
             player1.valueHand = objTmp.valueHand
-            if player1.hand != 4:
+            if player1.hand != analyse.handRank['Straight']:
                 # Flush
-                player1.hand = 5
+                player1.hand = analyse.handRank['Flush']
                 player1.valueHand = max(handPlayer1Numbers)
             else:
                 # Straight Flush
-                player1.hand = 8
+                player1.hand = analyse.handRank['StraightFlush']
                 player1.valueHand = objTmp.valueHand
 
     else:
@@ -226,34 +226,34 @@ for line in f:
         objTmp = analyse.checkFourNumbers(handPlayer1Numbers)
         player1.hand = objTmp.hand
         player1.valueHand = objTmp.valueHand
-        if player1.hand != 7:
+        if player1.hand != analyse.handRank['FourOfKind']:
             # Check if hand is Full House
             objTmp = analyse.checkFullHouse(handPlayer1Numbers)
             player1.hand = objTmp.hand
             player1.valueHand = objTmp.valueHand
-            if player1.hand != 6:
+            if player1.hand != analyse.handRank['FullHouse']:
                 # Check if hand is Straight
                 objTmp = analyse.checkStraigthNumbers(handPlayer1Numbers)
                 player1.hand = objTmp.hand
                 player1.valueHand = objTmp.valueHand
-                if player1.hand != 4:
+                if player1.hand != analyse.handRank['Straight']:
                     # Check if hand is Three of a Kind
                     objTmp = analyse.checkThreeNumbers(handPlayer1Numbers)
                     player1.hand = objTmp.hand
                     player1.valueHand = objTmp.valueHand
-                    if player1.hand != 3:
+                    if player1.hand != analyse.handRank['ThreeOfKind']:
                         # Check if hand is Two Pairs
                         objTmp = analyse.checkTwoPairs(handPlayer1Numbers)
                         player1.hand = objTmp.hand
                         player1.valueHand = objTmp.valueHand
-                        if player1.hand != 2:
+                        if player1.hand != analyse.handRank['TwoPairs']:
                             # Check if hand is One Pair
                             objTmp = analyse.checkOnePair(handPlayer1Numbers)
                             player1.hand = objTmp.hand
                             player1.valueHand = objTmp.valueHand
-                            if player1.hand != 1:
+                            if player1.hand != analyse.handRank['OnePair']:
                                 # High Card
-                                player1.hand = 0
+                                player1.hand = analyse.handRank['HighCard']
                                 player1.valueHand = max(handPlayer1Numbers)
 
     player2 = Player(0, 2)
@@ -265,48 +265,52 @@ for line in f:
         objTmp = analyse.checkRoyalFlushNumbers(handPlayer2Numbers)
         player2.hand = objTmp.hand
         player2.valueHand = objTmp.valueHand
-        if player2.hand != 9:
+        if player2.hand != analyse.handRank['RoyalFlush']:
             # Check if hand is Straight Flush
             objTmp = analyse.checkStraigthNumbers(handPlayer2Numbers)
             player2.hand = objTmp.hand
             player2.valueHand = objTmp.valueHand
-            if player2.hand != 8:
+            if player2.hand != analyse.handRank['Straight']:
                 # Flush
-                player2.hand = 5
-                player2.valueHand = max(handPlayer2Numbers)
+                player2.hand = analyse.handRank['Flush']
+                player2.valueHand = max(handPlayer1Numbers)
+            else:
+                # Straight Flush
+                player2.hand = analyse.handRank['StraightFlush']
+                player2.valueHand = objTmp.valueHand
     else:
         # Check if hand is Four of a Kind
         objTmp = analyse.checkFourNumbers(handPlayer2Numbers)
         player2.hand = objTmp.hand
         player2.valueHand = objTmp.valueHand
-        if player2.hand != 7:
+        if player2.hand != analyse.handRank['FourOfKind']:
             # Check if hand is Full House
             objTmp = analyse.checkFullHouse(handPlayer2Numbers)
             player2.hand = objTmp.hand
             player2.valueHand = objTmp.valueHand
-            if player2.hand != 6:
+            if player2.hand != analyse.handRank['FullHouse']:
                 # Check if hand is Straight
                 objTmp = analyse.checkStraigthNumbers(handPlayer2Numbers)
                 player2.hand = objTmp.hand
                 player2.valueHand = objTmp.valueHand
-                if player2.hand != 4:
+                if player2.hand != analyse.handRank['Straight']:
                     # Check if hand is Three of a Kind
                     objTmp = analyse.checkThreeNumbers(handPlayer2Numbers)
                     player2.hand = objTmp.hand
                     player2.valueHand = objTmp.valueHand
-                    if player2.hand != 3:
+                    if player2.hand != analyse.handRank['ThreeOfKind']:
                         # Check if hand is Two Pairs
                         objTmp = analyse.checkTwoPairs(handPlayer2Numbers)
                         player2.hand = objTmp.hand
                         player2.valueHand = objTmp.valueHand
-                        if player2.hand != 2:
+                        if player2.hand != analyse.handRank['TwoPairs']:
                             # Check if hand is One Pair
                             objTmp = analyse.checkOnePair(handPlayer2Numbers)
                             player2.hand = objTmp.hand
                             player2.valueHand = objTmp.valueHand
-                            if player2.hand != 1:
+                            if player2.hand != analyse.handRank['OnePair']:
                                 # High Card
-                                player2.hand = 0
+                                player2.hand = analyse.handRank['HighCard']
                                 player2.valueHand = max(handPlayer2Numbers)
 
     # Wins count

@@ -17,39 +17,39 @@ class Analyse(object):
         return suits.count(suits[0]) == 5
 
     def checkRoyalFlushNumbers(self, values):
-        if self.__class__.royalNumbers == values:
-            self.__class__.player.hand = self.__class__.handRank['RoyalFlush']
-            self.__class__.player.valueHand = 14
+        if self.royalNumbers == values:
+            self.player.hand = self.handRank['RoyalFlush']
+            self.player.valueHand = 14
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
     def checkStraigthNumbers(self, numbers):
         straightFlushNumbers = range(numbers[0], numbers[0] + 5, 1)
 
         if straightFlushNumbers == numbers:
-            self.__class__.player.hand = self.__class__.handRank['Straight']
-            self.__class__.player.valueHand = numbers[4]
+            self.player.hand = self.handRank['Straight']
+            self.player.valueHand = numbers[4]
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
     def checkFourNumbers(self, numbers):
         if numbers.count(numbers[0]) == 4:
-            self.__class__.player.hand = self.__class__.handRank['FourOfKind']
-            self.__class__.player.valueHand = numbers[0]
+            self.player.hand = self.handRank['FourOfKind']
+            self.player.valueHand = numbers[0]
         elif numbers.count(numbers[1]) == 4:
-            self.__class__.player.hand = self.__class__.handRank['FourOfKind']
-            self.__class__.player.valueHand = numbers[1]
+            self.player.hand = self.handRank['FourOfKind']
+            self.player.valueHand = numbers[1]
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
     def checkFullHouse(self, numbers):
         lst = numbers
@@ -69,35 +69,35 @@ class Analyse(object):
             maxValue = lst[2]
             lst = [x for x in lst if x != lst[2]]
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
         if hasThree:
             if lst.count(lst[0]) == 2:
-                self.__class__.player.hand = self.__class__.handRank['FullHouse']
-                self.__class__.player.valueHand = maxValue
+                self.player.hand = self.handRank['FullHouse']
+                self.player.valueHand = maxValue
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
 
     def checkThreeNumbers(self, numbers):
         if numbers.count(numbers[0]) == 3:
-            self.__class__.player.hand = self.__class__.handRank['ThreeOfKind']
-            self.__class__.player.valueHand = numbers[0]
+            self.player.hand = self.handRank['ThreeOfKind']
+            self.player.valueHand = numbers[0]
         elif numbers.count(numbers[1]) == 3:
-            self.__class__.player.hand = self.__class__.handRank['ThreeOfKind']
-            self.__class__.player.valueHand = numbers[1]
+            self.player.hand = self.handRank['ThreeOfKind']
+            self.player.valueHand = numbers[1]
         elif numbers.count(numbers[2]) == 3:
-            self.__class__.player.hand = self.__class__.handRank['ThreeOfKind']
-            self.__class__.player.valueHand = numbers[2]
+            self.player.hand = self.handRank['ThreeOfKind']
+            self.player.valueHand = numbers[2]
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
     def checkTwoPairs(self, numbers):
         lst = numbers
@@ -121,47 +121,47 @@ class Analyse(object):
             maxValue = lst[3]
             lst = [x for x in lst if x != lst[3]]
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
         if hasTwo:
             if lst.count(lst[0]) == 2:
-                self.__class__.player.hand = self.__class__.handRank['TwoPairs']
+                self.player.hand = self.handRank['TwoPairs']
                 if lst[0] > maxValue:
-                    self.__class__.player.valueHand = lst[0]
+                    self.player.valueHand = lst[0]
                 else:
-                    self.__class__.player.valueHand = maxValue
+                    self.player.valueHand = maxValue
             elif lst.count(lst[1]) == 2:
-                self.__class__.player.hand = self.__class__.handRank['TwoPairs']
+                self.player.hand = self.handRank['TwoPairs']
                 if lst[1] > maxValue:
-                    self.__class__.player.valueHand = lst[1]
+                    self.player.valueHand = lst[1]
                 else:
-                    self.__class__.player.valueHand = maxValue
+                    self.player.valueHand = maxValue
             else:
-                self.__class__.player.hand = self.__class__.handRank['HighCard']
-                self.__class__.player.valueHand = 2
+                self.player.hand = self.handRank['HighCard']
+                self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
 
     def checkOnePair(self, numbers):
         if numbers.count(numbers[0]) == 2:
-            self.__class__.player.hand = self.__class__.handRank['OnePair']
-            self.__class__.player.valueHand = numbers[0]
+            self.player.hand = self.handRank['OnePair']
+            self.player.valueHand = numbers[0]
         elif numbers.count(numbers[1]) == 2:
-            self.__class__.player.hand = self.__class__.handRank['OnePair']
-            self.__class__.player.valueHand = numbers[1]
+            self.player.hand = self.handRank['OnePair']
+            self.player.valueHand = numbers[1]
         elif numbers.count(numbers[2]) == 2:
-            self.__class__.player.hand = self.__class__.handRank['OnePair']
-            self.__class__.player.valueHand = numbers[2]
+            self.player.hand = self.handRank['OnePair']
+            self.player.valueHand = numbers[2]
         elif numbers.count(numbers[3]) == 2:
-            self.__class__.player.hand = self.__class__.handRank['OnePair']
-            self.__class__.player.valueHand = numbers[3]
+            self.player.hand = self.handRank['OnePair']
+            self.player.valueHand = numbers[3]
         else:
-            self.__class__.player.hand = self.__class__.handRank['HighCard']
-            self.__class__.player.valueHand = 2
+            self.player.hand = self.handRank['HighCard']
+            self.player.valueHand = 2
 
-        return self.__class__.player
+        return self.player
 
     def checkHighCard(self, numbers):
         return max(numbers)
